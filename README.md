@@ -1,43 +1,62 @@
 # Fyle Frontend Challenge
 
-## Who is this for?
+## Overview
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+This Angular single-page application (SPA) allows users to search for GitHub users and display their public repositories. The application provides a search bar where users can input a GitHub username to fetch and display user information along with their repositories. Server-side pagination is implemented to efficiently handle large numbers of repositories.
 
-## Why work at Fyle?
+## Features
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
-
-## Challenge outline
-
-This challenge involves implementing application using github api. 
-
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- **Search Functionality**: Users can search for GitHub users by entering a username.
+- **User Profile Display**: Once a user is found, their profile information including name, location, bio, and number of public repositories is displayed.
+- **Repository Listing**: The application displays the user's public repositories with details such as name, description, language, and number of stars. Each repository also shows associated topics.
+- **Pagination**: Server-side pagination allows users to navigate through multiple pages of repositories.
+- **Customizable Page Size**: Users can select the number of repositories to display per page from a dropdown menu.
+- **Skeleton Loader**: A skeleton loader is displayed while user data is being fetched.
+- **Error Handling**: Error messages are displayed if a user is not found or if there is an issue fetching repositories.
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+- **Clone the repository:**
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+```bash
+git clone https://github.com/subhamsingh07/fyle-internship-challenge-23.git
+```
 
-## Development server
+- **Navigate to the project directory:**
+ 
+```bash
+cd fyle-internship-challenge-23
+```
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+- **Install dependencies:**
 
-## Further help
+```bash
+npm install
+```
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+- **Run the development server:**
+
+```bash
+ng serve
+```
+
+- **Open the application in your browser:**
+
+Navigate to http://localhost:4200/ in your web browser.
+
+## Usage
+
+- **Enter a GitHub username in the search bar and press Enter or click the "Search" button.**
+- **View the user profile information and their public repositories.**
+- **Navigate through multiple pages of repositories using pagination buttons.**
+- **Customize the number of repositories displayed per page using the dropdown menu.**
+
+## Deployment
+
+The application is deployed to Netlify for easy access. You can check the live demo [here](https://user-repo-search.netlify.app/).
+
+## Credits
+
+- **This project was created as a part of the Fyle Internship Challenge.**
+- **Tailwind CSS is used for styling the user interface.**
+- **Angular CLI is used for project scaffolding and development.**

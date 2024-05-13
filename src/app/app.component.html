@@ -1,5 +1,78 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container mx-auto p-4">
+
+  <!-- Summary Section -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-semibold">Fyle Internship Challenge</h1>
   </div>
+
+  <!-- Search Bar -->
+  <div class="flex mb-4">
+    <input type="text" class="border rounded-l px-2 py-1" placeholder="Enter GitHub Username"
+           [(ngModel)]="searchUsername" (keyup.enter)="searchUser(searchUsername)">
+    <button class="bg-blue-500 text-white rounded-r px-4 py-1" (click)="searchUser(searchUsername)">Search</button>
+  </div>
+
+  <!-- User Profile -->
+  <div *ngIf="user" class="flex items-start mb-8">
+    <img [src]="user.avatar_url" alt="User Image" class="w-32 h-32 mr-4 rounded-full">
+    <div>
+      <h2 class="text-2xl font-bold">{{ user.name }}</h2>
+      <p class="text-lg">{{ user.location }}</p>
+      <p class="text-lg">{{ user.bio }}</p>
+      <p class="text-lg">{{ user.public_repos }} Public Repositories</p>
+      <!-- Add more user details here -->
+    </div>
+  </div>
+
+  <!-- Skeleton Loader for Profile Section -->
+  <div *ngIf="!user" class="skeleton-loader">
+    <div class="skeleton-shape profile-image"></div>
+    <div class="skeleton-shape profile-details"></div>
+    <div class="skeleton-shape profile-details"></div>
+    <div class="skeleton-shape profile-details"></div>
+  </div>
+
+   <!-- Repositories -->
+<div *ngIf="repositories.length > 0; else noRepositories" class="mb-8">
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let repo of repositories" class="border p-4 rounded cursor-pointer"
+         (click)="redirectToRepo(repo.html_url)">
+      <h3 class="font-bold">{{ repo.name }}</h3>
+      <p>{{ repo.description }}</p>
+      <p>Language: {{ repo.language }}</p>
+      <p>Stars: {{ repo.stargazers_count }}</p>
+      <div class="topic-list">
+        <div *ngFor="let topic of repo.topics" class="topic" (click)="redirectToTopic(topic)">
+          {{ topic }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noRepositories>
+  <p>No repositories found.</p>
+</ng-template>
+
+<!-- Repo per page dropdown -->
+<div class="flex items-center justify-end mt-4">
+  <div class="select-menu">
+    <span class="repo-per-page-label mr-2">Repo Per Page</span>
+    <select [(ngModel)]="perPage" (change)="changePerPage()">
+      <option *ngFor="let option of [10, 25, 50, 100]" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+</div>
+
+  <!-- Pagination -->
+  <div *ngIf="totalPages > 1" class="flex justify-center mt-4">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded mr-2" (click)="firstPage()">First</button>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded mr-2" (click)="previousPage()">Previous</button>
+    <ng-container *ngFor="let page of visiblePages">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded mr-2" (click)="goToPage(page)"
+              [class.active]="currentPage === page">{{ page }}</button>
+    </ng-container>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded mr-2" (click)="nextPage()">Next</button>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded" (click)="lastPage()">Last</button>
+  </div>
+
 </div>
